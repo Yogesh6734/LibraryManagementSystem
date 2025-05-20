@@ -157,4 +157,32 @@ public class Library {
         System.out.println(message);
         notification.sendNotification(message, patron);
     }
+
+    public List<Book> searchBook(String attribute, String value) {
+        List<Book> result = new ArrayList<>();
+        for (Book book : booksList.keySet()) {
+            switch(attribute.toLowerCase()) {
+                case "title":
+                    if (book.getTitle().toLowerCase().contains(value.toLowerCase())) {
+                        result.add(book);
+                    }
+                    break;
+                case "author":
+                    if (book.getAuthor().toLowerCase().contains(value.toLowerCase())) {
+                        result.add(book);
+                    }
+                    break;
+                case "isbn":
+                        long isbnValue = Long.parseLong(value);
+                        if (book.getISBN() == isbnValue) {
+                            result.add(book);
+                        }
+                    break;
+                default:
+                    System.out.println("Attribute not found");
+                    break;
+            }
+        }
+        return result;
+    }
 }
