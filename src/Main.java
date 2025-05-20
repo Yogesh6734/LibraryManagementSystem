@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -14,10 +16,15 @@ public class Main {
         Notification notification = new EmailNotification();
         Library library =new Library(notification);
 
+
         library.addBook(book1,10);
         library.addBook(book2,5);
         library.addBook(book3,1);
         library.addBook(book4,2);
+
+        List<Book> foundByTitle = library.searchBook("title", "Harry Potter");
+        List<Book> foundByAuthor = library.searchBook("author", "Chetan Bhagat");
+        List<Book> foundByISBN = library.searchBook("isbn", "4567");
 
         library.addPatron(yogesh);
         library.addPatron(ram);
